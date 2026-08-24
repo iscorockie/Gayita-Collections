@@ -6,12 +6,12 @@ import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 
 export const metadata: Metadata = {
-  title: "Gayita Collections — Vintage Apparel & Custom Streetwear | Uganda",
-  description: "Gayita Collections is a Kampala-based vintage & custom streetwear label. Hand-drawn artworks, artisanal denim, and stories stitched in Uganda. Shop curated vintage, art jackets, crane tees, and more.",
-  keywords: ["Gayita Collections", "Uganda streetwear", "vintage apparel Uganda", "Kampala fashion", "custom streetwear", "hand drawn art", "crested crane tee", "denim jacket Uganda"],
+  title: "Gayita Collections — 1 OF 1 Hand-Painted, No Prints | Kampala",
+  description: "Gayita Collections paints directly on clothes. No prints, no copies. Each piece is 1 of 1, hand-painted in Kabalagala studio, Kampala. Once sold, never recreated. Order via WhatsApp: 0763813315, +256 707 548383",
+  keywords: ["Gayita Collections", "1 of 1", "hand-painted clothes Uganda", "painted not printed", "Kampala atelier", "no copies", "custom painted"],
   openGraph: {
-    title: "Gayita Collections — Wear The Story",
-    description: "Vintage apparel & customised streetwear with hand-drawn artworks. Designed in Uganda for designers and everyone.",
+    title: "Gayita Collections — Painted Direct, Not Printed. 1 OF 1 Only.",
+    description: "We don't print. We paint directly on the clothes. Each piece is 1 of 1, no copies ever. Hand-painted in Kampala.",
     images: ["/images/hero.jpg"],
   }
 };
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="bg-paper text-ink antialiased">
+      <body className="bg-[#faf6ee] text-black antialiased">
         <CartProvider>
           <Header />
           <main className="min-h-screen">
