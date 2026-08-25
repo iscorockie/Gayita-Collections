@@ -6,3 +6,7 @@ uploads
 .npm
 .DS_Store
 .env
+
+*.tsbuildinfo
+
+# GitHub Pages artifact is intentionally tracked because Pages serves /docs

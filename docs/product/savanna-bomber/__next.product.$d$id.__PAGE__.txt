@@ -1,0 +1,21 @@
+1:"$Sreact.fragment"
+2:I[22573,["/Gayita-Collections/_next/static/chunks/3fntmmi971322.js","/Gayita-Collections/_next/static/chunks/3az4p6_vvchdv.js","/Gayita-Collections/_next/static/chunks/3_fhg2a02p0at.js"],"default"]
+3:I[97367,["/Gayita-Collections/_next/static/chunks/3fntmmi971322.js","/Gayita-Collections/_next/static/chunks/3az4p6_vvchdv.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+8:I[97367,["/Gayita-Collections/_next/static/chunks/3fntmmi971322.js","/Gayita-Collections/_next/static/chunks/3az4p6_vvchdv.js"],"ViewportBoundary"]
+9:I[97367,["/Gayita-Collections/_next/static/chunks/3fntmmi971322.js","/Gayita-Collections/_next/static/chunks/3az4p6_vvchdv.js"],"MetadataBoundary"]
+b:I[39756,["/Gayita-Collections/_next/static/chunks/3fntmmi971322.js","/Gayita-Collections/_next/static/chunks/3az4p6_vvchdv.js"],"default"]
+c:I[37457,["/Gayita-Collections/_next/static/chunks/3fntmmi971322.js","/Gayita-Collections/_next/static/chunks/3az4p6_vvchdv.js"],"default"]
+7:X
+e:X
+e:C
+0:{"buildId":"cLczmMGv_LnvY4Xlw2cN0","data":[{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"slugProp":"savanna-bomber"}],[["$","script","script-0",{"src":"/Gayita-Collections/_next/static/chunks/3_fhg2a02p0at.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":"$@6","staleTime":"$7","varyParams":null},{"rsc":["$","$1","h",{"children":[null,["$","$L8",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#f6f1e8"}],["$","meta","3",{"name":"color-scheme","content":"light"}]]}],["$","div",null,{"hidden":true,"children":["$","$L9",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Gayita Collections — Wear the artwork | Kampala, Uganda"}],["$","meta","1",{"name":"description","content":"Vintage apparel and customised streetwear with hand-drawn artworks. Shop one-off pieces or start a custom commission with Gayita Collections in Kabalagala, Kampala."}],["$","meta","2",{"name":"keywords","content":"Gayita Collections,Uganda streetwear,Kampala vintage clothing,customised clothing Uganda,hand-drawn apparel,designer collaborations,Kabalagala"}],["$","meta","3",{"property":"og:title","content":"Gayita Collections — Wear the artwork."}],["$","meta","4",{"property":"og:description","content":"Vintage apparel and customised streetwear with hand-drawn stories. Made in Kampala."}],["$","meta","5",{"property":"og:image","content":"https://iscorockie.github.io/Gayita-Collections/images/hero.jpg"}],["$","meta","6",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","7",{"name":"twitter:title","content":"Gayita Collections — Wear the artwork."}],["$","meta","8",{"name":"twitter:description","content":"Vintage apparel and customised streetwear with hand-drawn stories. Made in Kampala."}],["$","meta","9",{"name":"twitter:image","content":"https://iscorockie.github.io/Gayita-Collections/images/hero.jpg"}]]}]}]}],null]}],"isPartial":"$@a","staleTime":"$7","varyParams":null},{"rsc":["$","$1","c",{"children":[null,["$","$Lb",null,{"parallelRouterKey":"children","template":["$","$Lc",null,{}]}]]}],"isPartial":"$@d","staleTime":"$7","varyParams":"$e"},{"rsc":["$","$1","c",{"children":[null,["$","$Lb",null,{"parallelRouterKey":"children","template":["$","$Lc",null,{}]}]]}],"isPartial":"$@f","staleTime":"$7","varyParams":"$e"}],"isUpgradeableISRFallback":false,"a":"$@10","rootVaryParams":null,"needsRuntimeRequest":"$@11"}
+5:null
+11:true
+7:300
+7:C
+10:0
+a:"$undefined"
+d:"$undefined"
+f:"$undefined"
+6:"$undefined"
