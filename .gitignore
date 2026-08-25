@@ -1,12 +1,6 @@
 node_modules
-.next
-out
-uploads
-.config
-.npm
+dist
+dist-pages
+*.local
 .DS_Store
-.env
-
-*.tsbuildinfo
-
-# GitHub Pages artifact is intentionally tracked because Pages serves /docs
+.vite

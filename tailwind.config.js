@@ -1,44 +1,41 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./lib/**/*.{js,ts,jsx,tsx}",
-  ],
+export default {
+  content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        ink: "#141210",
-        coal: "#0b0a09",
-        smoke: "#1c1916",
-        paper: "#faf6ee",
-        cream: "#f3ecdd",
-        sand: "#e6dcc6",
-        gold: "#b08d4f",
-        goldlight: "#d3b47c",
-        clay: "#9c5b34",
+        asphalt: "#0a0a0a",
+        coal2: "#111111",
+        smoke2: "#191919",
+        concrete: "#e9e9e4",
+        bone: "#f4f4f0",
+        volt: "#c8ff16",
+        voltdim: "#a7d70d",
+        danger: "#ff2d34",
       },
       fontFamily: {
-        display: ["'Instrument Serif'", "'Playfair Display'", "Georgia", "serif"],
-        body: ["'General Sans'", "Manrope", "system-ui", "sans-serif"],
-        mono: ["'Geist Mono'", "monospace"],
-      },
-      letterSpacing: {
-        widest2: "0.35em",
+        display: ["Anton", "Impact", "sans-serif"],
+        body: ["'Space Grotesk'", "system-ui", "sans-serif"],
+        mono: ["'JetBrains Mono'", "monospace"],
       },
       keyframes: {
-        marquee: {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
-        },
-        fadeUp: {
-          "0%": { opacity: "0", transform: "translateY(24px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
+        marquee: { "0%": { transform: "translateX(0)" }, "100%": { transform: "translateX(-50%)" } },
+        marqueeRev: { "0%": { transform: "translateX(-50%)" }, "100%": { transform: "translateX(0)" } },
+        fadeUp: { "0%": { opacity: "0", transform: "translateY(26px)" }, "100%": { opacity: "1", transform: "translateY(0)" } },
+        bump: { "0%": { transform: "scale(1)" }, "40%": { transform: "scale(1.4)" }, "100%": { transform: "scale(1)" } },
+        floaty: { "0%,100%": { transform: "translateY(0) rotate(-6deg)" }, "50%": { transform: "translateY(-14px) rotate(-6deg)" } },
+        spinslow: { "0%": { transform: "rotate(0deg)" }, "100%": { transform: "rotate(360deg)" } },
+        flash: { "0%,100%": { opacity: "1" }, "50%": { opacity: "0.3" } },
       },
       animation: {
-        marquee: "marquee 28s linear infinite",
-        fadeUp: "fadeUp .7s cubic-bezier(.22,.61,.36,1) both",
+        marquee: "marquee 26s linear infinite",
+        "marquee-slow": "marquee 46s linear infinite",
+        marqueeRev: "marqueeRev 46s linear infinite",
+        fadeUp: "fadeUp .6s cubic-bezier(.22,.61,.36,1) both",
+        bump: "bump .4s ease",
+        floaty: "floaty 6.5s ease-in-out infinite",
+        "spin-slow": "spinslow 16s linear infinite",
+        flash: "flash 1.5s ease-in-out infinite",
       },
     },
   },

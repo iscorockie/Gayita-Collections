@@ -1,55 +1,47 @@
-# Gayita Collections
+# Gayita Collections 🧵
 
-**Vintage apparel + customised streetwear with hand-drawn artwork.**
+**Vintage apparel & one-of-one customised streetwear with hand-drawn artwork — Kampala, Uganda.**
 
-Gayita Collections is a Kampala studio making expressive clothes for designers, stylists and everybody who wants to wear something with a pulse. The storefront is seeded with one-of-one demo pieces, local UGX pricing, collector notes and a studio-confirmed WhatsApp checkout.
+A fully client-side e-commerce storefront: striking home page, filterable/sortable product grid,
+rich product detail pages with image galleries & reviews, a persistent slide-out cart, and a
+4-step checkout flow (MTN MoMo / Airtel Money / Cash on Delivery) with WhatsApp order confirmation.
 
-**Live site:** https://iscorockie.github.io/Gayita-Collections/
+## Live
 
-## Contact
-
-- 0763813315
-- 077548383
-- +256 707 548383
-- Studio: Kabalagala, Kampala, Uganda
-- Hours: Monday–Saturday, 10:00–19:00
-
-## Storefront features
-
-- Editorial, responsive home page with featured collections, studio story and custom commission CTA
-- Shop grid with search, category filters, price filters and sorting
-- Product detail pages with image gallery, full-screen image view, artist story, materials, size, care and collector reviews
-- Slide-out cart with localStorage persistence and one-of-one quantity protection
-- Streamlined checkout with customer details, Kampala/Uganda delivery options, payment preference and WhatsApp order confirmation
-- GitHub Pages-ready static export with the `/Gayita-Collections` base path
-
-## Local development
-
-```bash
-npm install
-npm run dev
-```
-
-Open http://localhost:3000.
-
-## Production build
-
-For GitHub Pages:
-
-```bash
-npm run build:pages
-```
-
-This builds with the `/Gayita-Collections` base path, refreshes the checked-in `docs/` artifact and adds `.nojekyll` so Next assets publish correctly. GitHub Pages serves `docs/` from the deployment branch. The untracked build output is also written to `out/` for local inspection.
+👉 **https://iscorockie.github.io/Gayita-Collections/**
 
 ## Stack
 
-- Next.js App Router with static export
-- React and TypeScript
-- Tailwind CSS 4
-- Lucide icons
-- localStorage-backed React cart context
+- React 18 + TypeScript + Vite
+- Tailwind CSS (self-hosted Playfair Display & Manrope variable fonts)
+- React Router (hash routing — GitHub Pages safe)
+- Cart, reviews & orders persisted to `localStorage`
+- Static-hosted → GitHub Pages (`gh-pages` branch)
 
-## Brand asset
+## Contacts baked in
 
-The storefront uses the supplied logo at `public/images/logo.jpg` throughout the header and footer.
+- WhatsApp / primary: **+256 707 548 383**
+- Line 2: **+256 763 813 315** · Line 3: **0775 48383**
+
+## Develop
+
+```bash
+npm install
+npm run dev        # dev server at http://localhost:5173
+npm run build      # type-check + production build → dist/
+npm run preview    # serve the production build
+```
+
+## Deploy (GitHub Pages)
+
+```bash
+npm run build:pages          # builds dist/ with the /Gayita-Collections/ base path
+# publish dist/ to the gh-pages branch (e.g. with gh-pages, or manually):
+cd dist && git init -b gh-pages && git add -A && git commit -m "deploy"
+git remote add origin https://github.com/iscorockie/Gayita-Collections.git
+git push -f origin gh-pages
+```
+
+> Note: replace demo products/images in `src/data/products.ts` with live inventory when ready.
+> Checkout is a guided order-request flow (confirmation happens on call/WhatsApp) — wire a real
+> payments/payments-api later if needed.

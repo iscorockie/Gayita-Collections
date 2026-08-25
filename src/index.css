@@ -1,0 +1,213 @@
+/* ---------- Fonts (self-hosted) ---------- */
+@font-face {
+  font-family: "Anton";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/Anton-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("./fonts/SpaceGrotesk-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("./fonts/JetBrainsMono-400.woff2") format("woff2");
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Base ---------- */
+html {
+  scroll-behavior: smooth;
+}
+body {
+  @apply bg-asphalt text-bone font-body antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection {
+  background: #c8ff16;
+  color: #0a0a0a;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #2c2c2c;
+  border: 2px solid #0a0a0a;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c8ff16;
+}
+
+/* ---------- Type ---------- */
+.text-stroke {
+  -webkit-text-stroke: 1.5px rgba(244, 244, 240, 0.35);
+  color: transparent;
+}
+.text-stroke-volt {
+  -webkit-text-stroke: 1.5px rgba(200, 255, 22, 0.6);
+  color: transparent;
+}
+.tag {
+  @apply font-mono text-[10px] font-bold uppercase tracking-[0.22em];
+}
+
+/* ---------- Buttons — hard shadow street ---------- */
+.btn {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3.5 text-[12px] font-extrabold uppercase tracking-[0.18em] transition-all duration-200 select-none;
+}
+.btn-volt {
+  @apply btn bg-volt text-asphalt hover:-translate-y-0.5;
+  box-shadow: 4px 4px 0 rgba(200, 255, 22, 0.35);
+}
+.btn-volt:hover {
+  box-shadow: 6px 6px 0 rgba(200, 255, 22, 0.5);
+}
+.btn-danger {
+  @apply btn bg-danger text-bone hover:-translate-y-0.5;
+  box-shadow: 4px 4px 0 rgba(255, 45, 52, 0.4);
+}
+.btn-ghost {
+  @apply btn border border-bone/30 text-bone hover:border-volt hover:text-volt hover:-translate-y-0.5;
+}
+.btn-bone {
+  @apply btn bg-bone text-asphalt hover:-translate-y-0.5;
+  box-shadow: 4px 4px 0 rgba(244, 244, 240, 0.25);
+}
+.btn-dark {
+  @apply btn bg-asphalt text-bone border border-bone/15 hover:border-volt hover:text-volt;
+}
+
+/* ---------- Forms ---------- */
+.field {
+  @apply w-full bg-smoke2 border border-bone/15 px-4 py-3 text-sm text-bone outline-none transition-all placeholder:text-bone/35 focus:border-volt;
+}
+.field-label {
+  @apply tag text-bone/55 block mb-1.5;
+}
+select.field {
+  @apply cursor-pointer;
+}
+input[type="range"] {
+  @apply accent-volt;
+}
+
+/* ---------- Card lines & lift ---------- */
+.card-line {
+  @apply border border-bone/10;
+}
+.hover-lift {
+  transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1), border-color 0.35s, box-shadow 0.35s;
+}
+.hover-lift:hover {
+  transform: translateY(-6px);
+  border-color: rgba(200, 255, 22, 0.55);
+  box-shadow: 8px 10px 0 rgba(0, 0, 0, 0.55);
+}
+
+/* ---------- Reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.75s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.75s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-marquee,
+  .animate-marquee-slow,
+  .animate-marqueeRev,
+  .animate-spin-slow {
+    animation: none !important;
+  }
+}
+
+/* ---------- Images ---------- */
+.img-fade {
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.img-fade.loaded {
+  opacity: 1;
+}
+.shimmer-bg {
+  background: linear-gradient(90deg, #161616 25%, #202020 50%, #161616 75%);
+  background-size: 800px 100%;
+  animation: gshimmer 1.4s linear infinite;
+}
+@keyframes gshimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+/* ---------- Misc ---------- */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.drawer-panel {
+  transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.drawer-overlay {
+  transition: opacity 0.35s ease;
+}
+.badge-bump {
+  animation: bump 0.45s ease;
+}
+.acc-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.acc-body.open {
+  grid-template-rows: 1fr;
+}
+.acc-inner {
+  overflow: hidden;
+}
+.lightbox-img {
+  animation: fadeUp 0.35s ease both;
+}
+.toast-in {
+  animation: fadeUp 0.3s ease both;
+}
+.star-btn {
+  transition: transform 0.15s ease;
+}
+.star-btn:hover {
+  transform: scale(1.2);
+}
+.hazard {
+  background-image: repeating-linear-gradient(-45deg, #c8ff16 0, #c8ff16 10px, #0a0a0a 10px, #0a0a0a 20px);
+}
+.hazard-red {
+  background-image: repeating-linear-gradient(-45deg, #ff2d34 0, #ff2d34 10px, #0a0a0a 10px, #0a0a0a 20px);
+}
+.grid-tex {
+  background-image: linear-gradient(rgba(244, 244, 240, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 244, 240, 0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
