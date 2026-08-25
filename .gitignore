@@ -8,3 +8,5 @@ uploads
 .env
 
 *.tsbuildinfo
+
+# GitHub Pages artifact is intentionally tracked because Pages serves /docs

@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:pages": "NEXT_PUBLIC_BASE_PATH=/Gayita-Collections npm run build && rm -rf docs && cp -R out docs && touch docs/.nojekyll",
     "start": "next start",
     "export": "next build",
     "lint": "eslint ."

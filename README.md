@@ -37,10 +37,10 @@ Open http://localhost:3000.
 For GitHub Pages:
 
 ```bash
-NEXT_PUBLIC_BASE_PATH=/Gayita-Collections npm run build
+npm run build:pages
 ```
 
-The static output is written to `out/`. The workflow in `.github/workflows/deploy-pages.yml` builds and deploys the site to GitHub Pages on updates to the session branch.
+This builds with the `/Gayita-Collections` base path, refreshes the checked-in `docs/` artifact and adds `.nojekyll` so Next assets publish correctly. GitHub Pages serves `docs/` from the deployment branch. The untracked build output is also written to `out/` for local inspection.
 
 ## Stack
 
