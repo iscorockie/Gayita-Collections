@@ -6,3 +6,5 @@ uploads
 .npm
 .DS_Store
 .env
+
+*.tsbuildinfo

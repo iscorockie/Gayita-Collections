@@ -1,128 +1,106 @@
 "use client";
-import { useCart } from "@/lib/cart";
-import { X, Minus, Plus, MessageCircle } from "lucide-react";
-import { formatUGX, getCartWhatsAppMessage } from "@/lib/products";
+
+/* The supplied local JPGs are intentionally used as art-directed media; their crop is part of the storefront design. */
+/* eslint-disable @next/next/no-img-element */
+
 import Link from "next/link";
-import { useState } from "react";
+import { ArrowRight, ChevronDown, Minus, Plus, X } from "lucide-react";
+import { useEffect } from "react";
+import { useCart } from "@/lib/cart";
+import { formatUGX, getCartWhatsAppMessage } from "@/lib/products";
 import { img } from "@/lib/config";
+
+const whatsappNumbers = ["256763813315", "256707548383"];
 
 export default function CartDrawer() {
   const { items, isOpen, setIsOpen, removeItem, updateQty, total, count } = useCart();
-  const [form, setForm] = useState({ name: "", location: "" });
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isOpen, setIsOpen]);
 
   if (!isOpen) return null;
 
-  const whatsappNumber = "256763813315"; // 0763813315
-  const whatsappNumber2 = "256707548383";
-
-  const handleWhatsAppOrder = () => {
-    const message = getCartWhatsAppMessage(items, total);
-    const fullMessage = `${message}\n\nName: ${form.name || "[add name]"}\nLocation: ${form.location || "[add location]"}`;
-    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(fullMessage)}`;
-    window.open(url, "_blank");
-  };
-
-  const handleWhatsAppSingle = (productName: string) => {
-    const msg = `Hello Gayita! I want ${productName} — is the 1 OF 1 still available?`;
-    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
-  };
+  const whatsappMessage = getCartWhatsAppMessage(items, total);
 
   return (
-    <div className="fixed inset-0 z-[100] flex justify-end">
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
-      <div className="relative w-full max-w-[480px] bg-[#faf6ee] h-full flex flex-col shadow-2xl border-l border-black/10">
-        {/* Header */}
-        <div className="p-6 border-b border-black/10 flex items-center justify-between bg-white">
+    <div className="fixed inset-0 z-[100]" role="dialog" aria-modal="true" aria-label="Shopping bag">
+      <button type="button" aria-label="Close shopping bag" className="absolute inset-0 h-full w-full cursor-default bg-black/45 backdrop-blur-[2px]" onClick={() => setIsOpen(false)} />
+      <aside className="absolute right-0 top-0 flex h-full w-full max-w-[520px] flex-col bg-[#fffdf8] shadow-2xl animate-[slideIn_.35s_ease-out]">
+        <div className="flex items-start justify-between border-b border-black/10 px-5 py-5 md:px-7">
           <div>
-            <h2 className="font-display text-[26px] leading-none font-bold uppercase tracking-tight">Cart — 1 OF 1s</h2>
-            <p className="font-mono text-[10px] tracking-[0.2em] uppercase opacity-60 mt-1">{count} unique pieces • No copies • Painted direct</p>
+            <p className="eyebrow text-black/50">Your edit</p>
+            <h2 className="mt-1 font-display text-3xl leading-none">Shopping bag <span className="font-mono text-xs align-middle text-black/45">({count})</span></h2>
           </div>
-          <button onClick={() => setIsOpen(false)} className="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center hover:bg-black hover:text-white transition">
-            <X className="w-4 h-4" />
-          </button>
+          <button type="button" onClick={() => setIsOpen(false)} className="flex h-10 w-10 items-center justify-center rounded-full border border-black/15 transition hover:bg-[#171412] hover:text-white" aria-label="Close shopping bag"><X className="h-4 w-4" /></button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto px-5 py-6 md:px-7">
           {items.length === 0 ? (
-            <div className="py-20 text-center">
-              <div className="w-20 h-20 mx-auto rounded-full bg-white border border-black/10 flex items-center justify-center mb-4">
-                <span className="font-mono text-[10px] tracking-widest uppercase">Empty</span>
-              </div>
-              <p className="font-display text-[22px] font-bold uppercase">No 1 of 1s yet</p>
-              <p className="text-[13px] opacity-60 mt-2 max-w-[28ch] mx-auto font-mono">Each piece is hand-painted directly, once sold it's gone forever. No copies.</p>
-              <Link href="/shop" onClick={() => setIsOpen(false)} className="inline-block mt-6 px-6 py-3 bg-black text-white rounded-full text-[11px] tracking-widest uppercase font-mono font-bold">Shop 1 of 1s</Link>
+            <div className="flex min-h-[55vh] flex-col items-center justify-center text-center">
+              <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-black/10 bg-[#f6f1e8] font-display text-3xl italic">g</div>
+              <h3 className="font-display text-3xl">Your bag is waiting.</h3>
+              <p className="mt-3 max-w-[30ch] text-sm leading-6 text-black/55">Find a hand-drawn one-off and make it part of your story.</p>
+              <Link href="/shop" onClick={() => setIsOpen(false)} className="mt-7 inline-flex items-center gap-3 rounded-full bg-[#171412] px-5 py-3 font-mono text-[10px] uppercase tracking-[0.14em] text-white transition hover:bg-[#b86f48]">Browse the edit <ArrowRight className="h-3.5 w-3.5" /></Link>
             </div>
           ) : (
             <>
-              <div className="p-3 bg-[#ff3b30] text-white rounded-xl text-[11px] font-mono tracking-wide">
-                ⚠️ These are 1 OF 1 — if someone else checks out first, they're gone. No copies ever.
+              <div className="mb-5 flex items-center gap-2 rounded-[2px] bg-[#f0f5c9] px-4 py-3 font-mono text-[10px] uppercase leading-5 tracking-[0.08em] text-[#424a22]">
+                <span className="h-2 w-2 shrink-0 rounded-full bg-[#75816a]" /> One-of-one pieces are held when you message the studio.
               </div>
-              {items.map((it, idx) => (
-                <div key={idx} className="flex gap-4 p-3 bg-white border border-black/10">
-                  <div className="w-[84px] h-[104px] bg-[#f5f1e8] overflow-hidden flex-shrink-0 border border-black/5">
-                    <img src={img(it.product.images[0])} alt={it.product.name} className="w-full h-full object-cover" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex justify-between gap-2">
-                      <h4 className="font-display text-[13px] leading-tight font-bold uppercase">{it.product.name}</h4>
-                      <button onClick={() => removeItem(idx)} className="text-[10px] opacity-50 hover:opacity-100 uppercase tracking-widest font-mono">Remove</button>
-                    </div>
-                    <p className="font-mono text-[10px] opacity-60 mt-1">{it.color} • Size {it.size} • {it.product.paintTime} paint</p>
-                    <p className="font-mono text-[9px] mt-1 px-2 py-1 bg-black text-white inline-block uppercase">1 OF 1 • NO COPY</p>
-                    <div className="flex items-center justify-between mt-3">
-                      <div className="flex items-center gap-2 border border-black/10 rounded-full px-2 py-1 bg-[#faf6ee]">
-                        <button onClick={() => updateQty(idx, it.quantity - 1)} className="w-6 h-6 rounded-full hover:bg-white flex items-center justify-center"><Minus className="w-3 h-3" /></button>
-                        <span className="text-[12px] w-6 text-center font-mono">{it.quantity}</span>
-                        <button onClick={() => updateQty(idx, it.quantity + 1)} className="w-6 h-6 rounded-full hover:bg-white flex items-center justify-center"><Plus className="w-3 h-3" /></button>
+              <div className="space-y-5">
+                {items.map((item, index) => (
+                  <div key={`${item.product.id}-${item.size}`} className="flex gap-4 border-b border-black/10 pb-5">
+                    <div className="h-32 w-24 shrink-0 overflow-hidden rounded-[2px] bg-[#e8dfd2]"><img src={img(item.product.images[0])} alt={item.product.name} className="h-full w-full object-cover" /></div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className="font-mono text-[9px] uppercase tracking-[0.13em] text-black/45">{item.product.category} · 1 of 1</p>
+                          <h3 className="mt-1 font-display text-xl leading-[0.95]">{item.product.name.replace(/^\d+\s+—\s+/, "")}</h3>
+                        </div>
+                        <button type="button" onClick={() => removeItem(index)} className="font-mono text-[9px] uppercase tracking-[0.1em] text-black/45 underline-offset-4 hover:text-[#b86f48] hover:underline">Remove</button>
                       </div>
-                      <span className="font-mono text-[12px] font-bold">{formatUGX(it.product.price * it.quantity)}</span>
+                      <p className="mt-2 font-mono text-[10px] text-black/55">Size {item.size} · {item.color}</p>
+                      <div className="mt-5 flex items-center justify-between">
+                        <div className="flex items-center gap-2 rounded-full border border-black/15 px-1.5 py-1">
+                          <button type="button" onClick={() => updateQty(index, item.quantity - 1)} className="flex h-6 w-6 items-center justify-center rounded-full hover:bg-[#f6f1e8]" aria-label="Remove one"><Minus className="h-3 w-3" /></button>
+                          <span className="w-4 text-center font-mono text-xs">{item.quantity}</span>
+                          <button type="button" disabled onClick={() => updateQty(index, item.quantity + 1)} className="flex h-6 w-6 cursor-not-allowed items-center justify-center rounded-full text-black/25" aria-label="One-of-one quantity limit"><Plus className="h-3 w-3" /></button>
+                        </div>
+                        <span className="font-mono text-sm">{formatUGX(item.product.price)}</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-
-              <div className="space-y-3 pt-4">
-                <div>
-                  <label className="font-mono text-[10px] uppercase tracking-widest opacity-70">Your Name</label>
-                  <input value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="e.g. Isco" className="mt-1 w-full px-4 py-3 border border-black/15 bg-white focus:outline-none focus:border-black font-mono text-[13px]" />
-                </div>
-                <div>
-                  <label className="font-mono text-[10px] uppercase tracking-widest opacity-70">Delivery Location (Kampala)</label>
-                  <input value={form.location} onChange={e => setForm({ ...form, location: e.target.value })} placeholder="Kabalagala, Ntinda, etc." className="mt-1 w-full px-4 py-3 border border-black/15 bg-white focus:outline-none focus:border-black font-mono text-[13px]" />
-                </div>
+                ))}
               </div>
+              <Link href="/shop" onClick={() => setIsOpen(false)} className="mt-6 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.14em] underline underline-offset-4">Continue browsing <ArrowRight className="h-3.5 w-3.5" /></Link>
             </>
           )}
         </div>
 
         {items.length > 0 && (
-          <div className="p-6 border-t border-black/10 bg-white space-y-4">
-            <div className="flex justify-between font-mono text-[11px] uppercase tracking-widest opacity-60">
-              <span>Subtotal (1 of 1s)</span><span>{formatUGX(total)}</span>
+          <div className="border-t border-black/10 bg-[#f6f1e8] px-5 py-5 md:px-7">
+            <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.12em] text-black/55"><span>Subtotal</span><span>{formatUGX(total)}</span></div>
+            <p className="mt-2 font-mono text-[10px] leading-5 text-black/50">Delivery is calculated at checkout · Kampala boda delivery from UGX 15,000.</p>
+            <Link href="/checkout" onClick={() => setIsOpen(false)} className="mt-5 flex w-full items-center justify-center gap-3 rounded-full bg-[#171412] py-4 font-mono text-[11px] uppercase tracking-[0.16em] text-white transition hover:bg-[#b86f48]">Continue to checkout <ArrowRight className="h-4 w-4" /></Link>
+            <div className="mt-3 grid grid-cols-2 gap-2">
+              {whatsappNumbers.map((number) => <a key={number} href={`https://wa.me/${number}?text=${encodeURIComponent(whatsappMessage)}`} target="_blank" rel="noreferrer" className="rounded-full border border-black/15 py-3 text-center font-mono text-[9px] uppercase tracking-[0.08em] transition hover:border-[#25d366] hover:bg-[#25d366]">WhatsApp {number === whatsappNumbers[0] ? "0763813315" : "+256 707 548383"}</a>)}
             </div>
-            <div className="flex justify-between font-display text-[20px] font-bold uppercase">
-              <span>Total</span><span>{formatUGX(total)}</span>
-            </div>
-
-            <button onClick={handleWhatsAppOrder} className="w-full py-4 bg-[#25D366] text-white rounded-full flex items-center justify-center gap-2 text-[12px] tracking-[0.18em] uppercase font-mono font-bold hover:bg-black transition">
-              <MessageCircle className="w-4 h-4" /> Order via WhatsApp — {formatUGX(total)}
-            </button>
-
-            <div className="grid grid-cols-2 gap-2">
-              <a href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(getCartWhatsAppMessage(items, total))}`} target="_blank" className="py-3 border border-black/15 rounded-full text-center text-[10px] tracking-widest uppercase font-mono hover:bg-black hover:text-white transition">
-                WhatsApp 0763813315
-              </a>
-              <a href={`https://wa.me/${whatsappNumber2}?text=${encodeURIComponent(getCartWhatsAppMessage(items, total))}`} target="_blank" className="py-3 border border-black/15 rounded-full text-center text-[10px] tracking-widest uppercase font-mono hover:bg-black hover:text-white transition">
-                WhatsApp +256 707 548383
-              </a>
-            </div>
-
-            <p className="text-[10px] text-center opacity-60 font-mono leading-relaxed">
-              Each piece is hand-painted direct, no prints, no copies. We’ll confirm availability on WhatsApp. Boda delivery same day in Kampala.
-            </p>
+            <div className="mt-4 flex items-center justify-center gap-2 font-mono text-[9px] uppercase tracking-[0.1em] text-black/45"><ChevronDown className="h-3 w-3" /> Secure studio confirmation via WhatsApp</div>
           </div>
         )}
-      </div>
+      </aside>
+      <style jsx>{`@keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }`}</style>
     </div>
   );
 }

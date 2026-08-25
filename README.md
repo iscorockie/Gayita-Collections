@@ -1,68 +1,55 @@
-# Gayita Collections — Vintage & Hand-Drawn Streetwear
+# Gayita Collections
 
-**Kampala, Uganda** | Vintage Apparel & Customised Streetwear with Hand-Drawn Artworks
+**Vintage apparel + customised streetwear with hand-drawn artwork.**
 
-Live Site: **https://iscorockie.github.io/Gayita-Collections/**
+Gayita Collections is a Kampala studio making expressive clothes for designers, stylists and everybody who wants to wear something with a pulse. The storefront is seeded with one-of-one demo pieces, local UGX pricing, collector notes and a studio-confirmed WhatsApp checkout.
 
-Repository: https://github.com/iscorockie/Gayita-Collections
+**Live site:** https://iscorockie.github.io/Gayita-Collections/
 
----
+## Contact
 
-### Brand
-Gayita Collections is a Kampala atelier (Kabalagala) reworking vintage with hand-drawn art. Each piece is designed by Ugandan artists, printed in our studio, and made to be worn hard. For designers, stylists, and everyone.
-
-### Contacts (Official)
 - 0763813315
 - 077548383
 - +256 707 548383
-- WhatsApp: https://wa.me/256763813315
-- Location: Kabalagala, Kampala — Mon-Sat 10am-7pm
+- Studio: Kabalagala, Kampala, Uganda
+- Hours: Monday–Saturday, 10:00–19:00
 
-### Features Built
-- **Home**: Hero with model wearing Crane Heritage Tee, featured collections, atelier story, categories, marquee, newsletter, contact strip
-- **Shop**: 12 products seeded, filters by category (Jackets, Tees, Vintage, etc.), price range, sorting (featured, newest, price, rating)
-- **Product Detail**: Image gallery with thumbnails, artist story, colors/sizes, qty, add to cart, details, materials, reviews with avatars, related products
-- **Cart**: Slide-out drawer, persistent via localStorage, qty controls, subtotal, delivery (15k UGX Kampala), checkout flow
-- **Checkout**: Form (name, phone, location), payment methods (MTN MoMo, Airtel Money, Cash on Delivery), order success with WhatsApp confirmation
-- **Design**: Elegant typography (Instrument Serif + Manrope), gold/cream/paper palette, tasteful animations (marquee, fadeUp, hover scale), premium imagery, fully responsive
+## Storefront features
 
-### Products Seeded
-- Crane Heritage Tee — Golden Crown (85k UGX) — Best Seller
-- Artisan Hand-Painted Denim Jacket (245k UGX)
-- Savanna Sunset Souvenir Bomber (295k UGX)
-- Vintage Guns N Roses Tee (95k UGX)
-- Tobacco Corduroy Trucker (185k UGX)
-- Watercolor Crane Studio Tee (90k UGX)
-- Classic Mid-Wash Denim Jacket (165k UGX)
-- Night Sky Embroidered Bucket Hat (55k UGX)
-- Kampala City Boda Hoodie — Night Ride (145k UGX)
-- High-Waist Light Wash Jeans (135k UGX)
-- Matatu Motion Uganda Sweatshirt (125k UGX)
-- Varsity Legend Jacket W (275k UGX)
+- Editorial, responsive home page with featured collections, studio story and custom commission CTA
+- Shop grid with search, category filters, price filters and sorting
+- Product detail pages with image gallery, full-screen image view, artist story, materials, size, care and collector reviews
+- Slide-out cart with localStorage persistence and one-of-one quantity protection
+- Streamlined checkout with customer details, Kampala/Uganda delivery options, payment preference and WhatsApp order confirmation
+- GitHub Pages-ready static export with the `/Gayita-Collections` base path
 
-All prices in UGX with USD equivalent, realistic reviews, artist credits, and hand-drawn stories.
-
-### Tech Stack
-- Next.js 15 (App Router, static export)
-- Tailwind CSS 4
-- Framer Motion
-- Lucide Icons
-- Persistent cart with React Context + localStorage
-
-### Deployment
-- GitHub Pages via `gh-pages` branch
-- Base path: `/Gayita-Collections`
-- Build: `NEXT_PUBLIC_BASE_PATH=/Gayita-Collections npm run build`
-- Output in `out/` deployed to `gh-pages`
+## Local development
 
 ```bash
 npm install
-npm run dev       # local at http://localhost:3000
-npm run build     # static export to out/
+npm run dev
 ```
 
-### Logo
-Used from `public/images/logo.jpg` — black background with needle/button and "gayita COLLECTIONS"
+Open http://localhost:3000.
 
----
-© 2026 Gayita Collections — All artworks original, printed in Uganda
+## Production build
+
+For GitHub Pages:
+
+```bash
+NEXT_PUBLIC_BASE_PATH=/Gayita-Collections npm run build
+```
+
+The static output is written to `out/`. The workflow in `.github/workflows/deploy-pages.yml` builds and deploys the site to GitHub Pages on updates to the session branch.
+
+## Stack
+
+- Next.js App Router with static export
+- React and TypeScript
+- Tailwind CSS 4
+- Lucide icons
+- localStorage-backed React cart context
+
+## Brand asset
+
+The storefront uses the supplied logo at `public/images/logo.jpg` throughout the header and footer.
